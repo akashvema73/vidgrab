@@ -150,8 +150,6 @@ public class YtDlpService {
     return msg.length() > 250 ? msg.substring(0, 250) : msg;
 }
 
-
-
     
     String low = msg.toLowerCase();
     if (low.contains("not a bot")) return "YouTube is asking for verification (bot check).";
