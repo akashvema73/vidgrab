@@ -1,3 +1,11 @@
+# Stage 1: project build karna
+FROM maven:3.9-eclipse-temurin-17 AS build
+WORKDIR /app
+COPY pom.xml .
+COPY src ./src
+RUN mvn -q -DskipTests package
+
+# Stage 2: app chalana
 FROM eclipse-temurin:17-jre
 RUN apt-get update \
  && apt-get install -y --no-install-recommends python3 ffmpeg curl unzip ca-certificates \
