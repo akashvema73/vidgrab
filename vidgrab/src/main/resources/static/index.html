@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VidGrab - Download videos from YouTube, Instagram and Facebook</title>
+<meta name="description" content="Paste a link and download videos from YouTube, Instagram and Facebook in your preferred quality.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="bg" aria-hidden="true">
+  <span class="orb o1"></span><span class="orb o2"></span><span class="orb o3"></span>
+  <div class="grid"></div>
+</div>
+
+<header class="nav">
+  <a href="#home" class="logo"><span class="logo-mark"><i class="fa-solid fa-arrow-down"></i></span>VidGrab</a>
+  <nav class="links">
+    <a href="#how">How it works</a>
+    <a href="#features">Features</a>
+    <a href="#history">History</a>
+    <a href="#contact">Feedback</a>
+  </nav>
+  <a href="#home" class="btn small">Start now</a>
+</header>
+
+<main id="home">
+  <section class="hero">
+    <div class="badge reveal"><i class="fa-solid fa-bolt"></i> Free &middot; Fast &middot; No sign-up</div>
+    <h1 class="reveal">Download videos from <span class="grad">YouTube, Instagram</span> and Facebook</h1>
+    <p class="sub reveal">Paste any public video link, pick your quality, and save it in seconds. One tool for all three platforms.</p>
+
+    <div class="panel glass reveal">
+      <div class="chips" id="chips">
+        <button class="chip yt" data-p="YouTube" type="button"><i class="fa-brands fa-youtube"></i> YouTube</button>
+        <button class="chip ig" data-p="Instagram" type="button"><i class="fa-brands fa-instagram"></i> Instagram</button>
+        <button class="chip fb" data-p="Facebook" type="button"><i class="fa-brands fa-facebook"></i> Facebook</button>
+      </div>
+
+      <div class="field" id="field">
+        <i class="fa-solid fa-link lead"></i>
+        <input id="url" type="url" inputmode="url" autocomplete="off" spellcheck="false" placeholder="Paste your video link here">
+        <button class="ghost" id="pasteBtn" type="button"><i class="fa-regular fa-clipboard"></i><span>Paste</span></button>
+        <button class="btn" id="fetchBtn" type="button"><span class="label">Get video</span><span class="spin"></span></button>
+      </div>
+      <p class="hint" id="hint">Works with public videos, reels, shorts and posts.</p>
+
+      <div class="result skeleton hidden" id="skeleton">
+        <div class="thumb sk"></div>
+        <div class="meta"><div class="sk line w80"></div><div class="sk line w50"></div><div class="sk line w65"></div><div class="sk btnsk"></div></div>
+      </div>
+
+      <div class="result hidden" id="result">
+        <div class="thumb">
+          <img id="thumb" alt="" referrerpolicy="no-referrer">
+          <span class="dur" id="dur"></span>
+          <span class="ptag" id="ptag"></span>
+        </div>
+        <div class="meta">
+          <h3 id="title"></h3>
+          <p class="by" id="by"></p>
+          <p class="lbl">Choose quality</p>
+          <div class="quals" id="quals">
+            <button type="button" class="q active" data-q="best">Best</button>
+            <button type="button" class="q" data-q="1080">1080p</button>
+            <button type="button" class="q" data-q="720">720p</button>
+            <button type="button" class="q" data-q="480">480p</button>
+            <button type="button" class="q" data-q="audio"><i class="fa-solid fa-music"></i> Audio</button>
+          </div>
+          <button class="btn big" id="dlBtn" type="button"><span class="label"><i class="fa-solid fa-download"></i> Download</span><span class="spin"></span></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats reveal">
+    <div class="stat glass"><b id="sTotal" data-v="0">0</b><span>Videos downloaded</span></div>
+    <div class="stat glass"><b id="sPlat" data-v="3">3</b><span>Platforms supported</span></div>
+    <div class="stat glass"><b data-v="5">5</b><span>Quality options</span></div>
+    <div class="stat glass"><b data-v="0">0</b><span>Sign-ups needed</span></div>
+  </section>
+
+  <section class="section" id="how">
+    <div class="head reveal"><span class="eyebrow">How it works</span><h2>Three steps. That's it.</h2></div>
+    <div class="steps">
+      <div class="step glass reveal"><span class="num">1</span><i class="fa-regular fa-copy"></i><h4>Copy the link</h4><p>Open the video on YouTube, Instagram or Facebook and copy its URL.</p></div>
+      <div class="step glass reveal"><span class="num">2</span><i class="fa-solid fa-link"></i><h4>Paste and fetch</h4><p>Paste it above. We detect the platform and load the video details.</p></div>
+      <div class="step glass reveal"><span class="num">3</span><i class="fa-solid fa-circle-down"></i><h4>Pick quality, download</h4><p>Choose a resolution or audio only, then save the file to your device.</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="features">
+    <div class="head reveal"><span class="eyebrow">Features</span><h2>Built to feel effortless</h2></div>
+    <div class="feats">
+      <div class="feat glass reveal"><i class="fa-solid fa-layer-group"></i><h4>All-in-one</h4><p>YouTube, Instagram and Facebook links in a single tool.</p></div>
+      <div class="feat glass reveal"><i class="fa-solid fa-film"></i><h4>HD quality</h4><p>Pick Best, 1080p, 720p or 480p based on your data and storage.</p></div>
+      <div class="feat glass reveal"><i class="fa-solid fa-headphones"></i><h4>Audio only</h4><p>Save just the sound of a video for music or podcasts.</p></div>
+      <div class="feat glass reveal"><i class="fa-solid fa-clock-rotate-left"></i><h4>Download history</h4><p>Your recent downloads are stored in MySQL so you can grab them again.</p></div>
+      <div class="feat glass reveal"><i class="fa-solid fa-shield-halved"></i><h4>Private by design</h4><p>Files are removed from the server right after your download finishes.</p></div>
+      <div class="feat glass reveal"><i class="fa-solid fa-wand-magic-sparkles"></i><h4>Clean files</h4><p>We never add watermarks or ads to your videos.</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="history">
+    <div class="head reveal"><span class="eyebrow">History</span><h2>Your recent downloads</h2></div>
+    <div class="hist glass reveal" id="histBox">
+      <p class="empty" id="histEmpty"><i class="fa-regular fa-folder-open"></i>Nothing here yet. Your downloads will show up here.</p>
+      <ul id="histList"></ul>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="head reveal"><span class="eyebrow">Feedback</span><h2>Tell us what you think</h2></div>
+    <form class="contact glass reveal" id="fbForm" novalidate>
+      <div class="row">
+        <input id="fbName" placeholder="Your name" maxlength="100">
+        <input id="fbEmail" type="email" placeholder="name@company.com" maxlength="150">
+      </div>
+      <textarea id="fbMsg" rows="4" placeholder="Share an idea, a bug, or a kind word" maxlength="2000"></textarea>
+      <button class="btn" type="submit" id="fbBtn"><span class="label">Send feedback</span><span class="spin"></span></button>
+    </form>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="logo"><span class="logo-mark"><i class="fa-solid fa-arrow-down"></i></span>VidGrab</div>
+  <p>Download only videos you own or have permission to save. Respect creators and each platform's terms of service.</p>
+  <small>Built with Java Spring Boot, MySQL, HTML, CSS and JavaScript.</small>
+</footer>
+
+<div class="toasts" id="toasts" aria-live="polite"></div>
+<script src="js/app.js"></script>
+</body>
+</html>
