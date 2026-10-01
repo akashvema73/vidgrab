@@ -139,16 +139,15 @@ public class YtDlpService {
     private String text(JsonNode n, String key, String fallback) {
         return n.hasNonNull(key) ? n.get(key).asText() : fallback;
     }
-
-    private String cleanError(String err) {
-        String msg = "Could not fetch this video.";
-        for (String line : err.split("\\R")) {
-            if (line.startsWith("ERROR:")) msg = line.substring(6).trim();
-        }
-        String low = msg.toLowerCase();
-        if (low.contains("private") || low.contains("login") || low.contains("cookies")) {
-            return "This video is private or needs a login, so it can't be downloaded.";
-        }
-        return msg.length() > 200 ? msg.substring(0, 200) : msg;
+private String cleanError(String err) {
+    System.err.println("yt-dlp error: " + err);
+    String msg = "Could not fetch this video.";
+    for (String line : err.split("\\R")) {
+        if (line.startsWith("ERROR:")) msg = line.substring(6).trim();
     }
+    String low = msg.toLowerCase();
+    if (low.contains("not a bot")) return "YouTube is asking for verification (bot check).";
+    if (low.contains("private video")) return "This video is private.";
+    if (low.contains("confirm your age")) return "This video is age-restricted.";
+    return msg.length() > 200 ? msg.substring(0, 200) : msg;
 }
