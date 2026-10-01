@@ -17,7 +17,6 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
-/** yt-dlp ko process ki tarah chalakar video info aur file nikalta hai. */
 @Service
 public class YtDlpService {
 
@@ -52,7 +51,6 @@ public class YtDlpService {
         }
     }
 
-    /** Video ek temp folder me download karta hai. Caller ko folder delete karna hai. */
     public Path download(String url, String quality) {
         Path dir;
         try {
@@ -140,20 +138,12 @@ public class YtDlpService {
         return n.hasNonNull(key) ? n.get(key).asText() : fallback;
     }
 
-
     private String cleanError(String err) {
-    System.err.println("yt-dlp error: " + err);
-    String msg = "Could not fetch this video.";
-    for (String line : err.split("\\R")) {
-        if (line.startsWith("ERROR:")) msg = line.substring(6).trim();
+        System.err.println("yt-dlp error: " + err);
+        String msg = "Could not fetch this video.";
+        for (String line : err.split("\\R")) {
+            if (line.startsWith("ERROR:")) msg = line.substring(6).trim();
+        }
+        return msg.length() > 250 ? msg.substring(0, 250) : msg;
     }
-    return msg.length() > 250 ? msg.substring(0, 250) : msg;
-}
-
-    
-    String low = msg.toLowerCase();
-    if (low.contains("not a bot")) return "YouTube is asking for verification (bot check).";
-    if (low.contains("private video")) return "This video is private.";
-    if (low.contains("confirm your age")) return "This video is age-restricted.";
-    return msg.length() > 200 ? msg.substring(0, 200) : msg;
 }
